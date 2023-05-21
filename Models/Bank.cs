@@ -1,5 +1,7 @@
 ﻿
 using Microsoft.EntityFrameworkCore;
+using Service.Account.Enums;
+using Service.Base.Models.Base;
 using System.ComponentModel.DataAnnotations;
 
 namespace InventoryManagementSystem.Models

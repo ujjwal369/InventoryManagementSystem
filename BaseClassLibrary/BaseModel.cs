@@ -1,4 +1,6 @@
 ﻿
+using Service.Base.Enums;
+using Service.Base.Models.Sync;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -38,7 +40,7 @@ namespace Service.Base.Models.Base
 
 
         //Reference Entity
-        public SyncUser EntryUser { get; set; }
-        public SyncUser ChangeUser { get; set; }
+        public User EntryUser { get; set; }
+        public User ChangeUser { get; set; }
     }
 }

@@ -1,11 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Service.Base.Models.Base;
-using Service.Base.Models.Sync;
 using Service.Base.Attributes.ModelAttributes;
 using Service.Account.Enums;
 using Service.Base.Enums;
-using Service.Base.Enums.Common;
-using Service.Base.Enums.Common.DocumentType;
+
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -44,11 +42,6 @@ namespace Service.Account.Models
         public SubledgerType SubledgerType { get; set; }
         [Required]
         public int PlaceOrder { get; set; }
-        [NotMapped]
-        public DepositLedgerOption? DepositLedgerId { get; set; }
-        [NotMapped]
-        public LoanLedgerOption? LoanLedgerId { get; set; }
-
 
         //Reference Entity
         public ChartOfAccount Parent { get; set; }

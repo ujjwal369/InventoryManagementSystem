@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Service.Account.Enums;
+using Service.Authorization.Models;
 using Service.Base.Attributes.ModelAttributes;
 using Service.Base.Enums;
 using Service.Base.Models.Base;
-using Service.Base.Models.Sync;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -17,19 +17,18 @@ namespace Service.Account.Models
         public string VoucherNumber { get; set; }
 
         [Required]
+        [EnumDataType(typeof(VoucherTypeOption))]
         public VoucherTypeOption VoucherType { get; set; }
         [NotMapped]
         public int Priority { get; set; }
 
         [Required]
-        [DataTypeDate]
         public DateTime TransactionDate { get; set; }
 
         [Required]
         public TimeOnly TransactionTime { get; set; }
 
         [Required]
-        [DataTypeDate]
         public DateTime ValueDate { get; set; }
 
         [Required]
@@ -43,8 +42,7 @@ namespace Service.Account.Models
         [ForeignKey(nameof(ReferencedVoucher))]
         public int? ReferencedVoucherId { get; set; }
 
-        [Required]
-        public ServiceModuleOption ServiceModule { get; set; }
+
 
         [Required]
         public int MenuId { get; set; }
@@ -58,17 +56,17 @@ namespace Service.Account.Models
 
 
         //Reference Entity
-        public SyncBranch Branch { get; set; }
-        public SyncBranch CreatedBranch { get; set; }
+        public Branch Branch { get; set; }
+        public Branch CreatedBranch { get; set; }
         public Voucher ReferencedVoucher { get; set; }
 
-        [ChildEntity]
+
         public ICollection<VoucherDetail> VoucherDetail { get; set; }
 
     }
 
 
-    public class VoucherDetail : BaseChildModel
+    public class VoucherDetail 
     {
         [Required]
         [ForeignKey(nameof(Voucher))]

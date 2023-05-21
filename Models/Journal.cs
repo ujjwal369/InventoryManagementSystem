@@ -1,21 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Service.Authorization.Models;
 using Service.Base.Models.Base;
-using Service.Base.Models.Sync;
-using Service.Base.Attributes.ModelAttributes;
-using Service.Account.Enums;
-using Service.Base.Enums;
-using Service.Base.Enums.Common;
-using Service.Base.Enums.Common.DocumentType;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Service.Account.Models
 {
-    /* CAUTION:     !! READ CAREFULLY !!
-     * Please resolve any dependencies assembly
-     * Please resolve enum reference
-     * Please check any missing attributes, foreign key and unique constraints
-    */
 
     public class Journal : BaseModel
     {
@@ -24,7 +14,6 @@ namespace Service.Account.Models
         public int BranchId { get; set; }
 
         [Required]
-        [DataTypeDate]
         public DateTime ValueDate { get; set; }
 
         [Required]
@@ -36,16 +25,15 @@ namespace Service.Account.Models
 
 
         //Reference Entity
-        public SyncBranch Branch { get; set; }
+        public Branch Branch { get; set; }
         public Voucher Voucher { get; set; }
 
-        [ChildEntity]
         public ICollection<JournalDetail> JournalDetail { get; set; }
 
     }
 
 
-    public class JournalDetail : BaseChildModel
+    public class JournalDetail 
     {
         [Required]
         [ForeignKey(nameof(Journal))]
